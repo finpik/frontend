@@ -1,0 +1,47 @@
+name: Slack Notification
+
+on:
+  pull_request:
+    types: [opened, closed]
+
+jobs:
+  send_slack_notification:
+    name: Send Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Notification for PR creation
+        if: github.event.action == 'opened'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          fields: pullRequest
+          custom_payload: |
+            {
+              "attachments": [
+                {
+                  "color": "good",
+                  "title": "<${{ github.event.pull_request.html_url }}|${{ github.event.pull_request.title }}> by ${{ github.event.pull_request.user.login }}",
+                  "text": `${{ github.event.pull_request.body }}`
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack Notification for PR merge
+        if: github.event.action == 'closed' && github.event.pull_request.merged == true
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          fields: pullRequest
+          custom_payload: |
+            {
+              "attachments": [
+                {
+                  "color": "good",
+                  "text": "A pull request has been merged: <${{ github.event.pull_request.html_url }}|${{ github.event.pull_request.title }}> by ${{ github.event.pull_request.merged_by.login }}"
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
