@@ -1,5 +1,8 @@
 {
   "name": "@repo/tailwind-config",
   "version": "0.0.0",
-  "private": true
+  "private": true,
+  "peerDependencies": {
+    "tailwindcss": "^4.0"
+  }
 }
