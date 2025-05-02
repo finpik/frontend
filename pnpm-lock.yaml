@@ -28,9 +28,6 @@ importers:
       '@repo/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
-      '@repo/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@tailwindcss/postcss':
         specifier: ^4.1.5
         version: 4.1.5
@@ -3905,6 +3902,7 @@ packages:
         integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==,
       }
     engines: { node: '>=14.17' }
+    hasBin: true
 
   uglify-js@3.19.3:
     resolution:
