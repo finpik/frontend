@@ -1,1 +1,131 @@
 @import 'tailwindcss';
+
+@theme {
+  /* radius */
+  --radius-xs: 10px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 50px;
+
+  /* color */
+  --color-gray-1: #111111;
+  --color-gray-2: #2e2e2e;
+  --color-gray-3: #4a4a4a;
+  --color-gray-4: #666666;
+  --color-gray-5: #838383;
+  --color-gray-6: #9a9a9a;
+  --color-gray-7: #a0a0a0;
+  --color-gray-8: #c1c1c1;
+  --color-gray-9: #e4e4e4;
+  --color-gray-10: #f4f4f4;
+  --color-bg-1: #ffffff;
+  --color-bg-2: #f2f5f7;
+  --color-blue-1: #f3f7fb;
+  --color-blue-2: #5dade2;
+  --color-blue-3: #35749f;
+  --color-orange-1: #fef5e7;
+  --color-orange-2: #f5b041;
+  --color-orange-3: #e67e22;
+  --color-yellow-1: #fef9e7;
+  --color-yellow-2: #f8d547;
+  --color-yellow-3: #be9c14;
+  --color-green-1: #f0f9f4;
+  --color-green-2: #58d68d;
+  --color-green-3: #1c7f46;
+  --color-red-1: #fff3f2;
+  --color-red-2: #e57373;
+  --color-red-3: #c0392b;
+  --color-pink-1: #fff3f8;
+  --color-pink-2: #f48fb1;
+  --color-pink-3: #d44278;
+  --color-purple-1: #fcf4ff;
+  --color-purple-2: #a569bd;
+  --color-purple-3: #6c3483;
+  --color-gray-1: #f7f7f7;
+  --color-gray-2: #c2c2c2;
+  --color-gray-3: #111111;
+  --color-pm-1: #4160ff;
+  --color-pm-2: #6c84ff;
+  --color-pm-3: #f3f5ff;
+  --color-vali-1: #ff2e2e;
+
+  /* box-shadow */
+  --shadow-1: 0px 0px 5px rgba(191, 191, 191, 0.25);
+  --shadow-2: 2px 3px 4px rgba(17, 17, 17, 0.25);
+  --shadow-3: 2px 3px 4px rgba(102, 102, 102, 0.25);
+  --shadow-4: 3px 3px 4px rgba(102, 102, 102, 0.25);
+  --shadow-5: 0px 0px 4px rgba(118, 118, 118, 0.25);
+  --shadow-6: 2px 3px 4px rgba(118, 118, 118, 0.25);
+  --shadow-7: 0px -2px 7px rgba(118, 118, 118, 0.25);
+}
+
+/* typography */
+@layer utilities {
+  .h1 {
+    @apply text-2xl font-bold leading-tight;
+  }
+  .h2 {
+    @apply text-xl font-normal leading-tight;
+  }
+  .h3 {
+    @apply text-lg font-bold leading-tight;
+  }
+  .h4 {
+    @apply text-lg font-normal leading-tight;
+  }
+  .h5 {
+    @apply text-lg font-medium leading-tight;
+  }
+  .s1 {
+    @apply text-base font-normal leading-relaxed;
+  }
+  .s2 {
+    @apply text-base font-normal leading-tight;
+  }
+  .s3 {
+    @apply text-base font-medium leading-tight;
+  }
+  .s4 {
+    @apply text-base font-medium leading-tight;
+  }
+  .b1 {
+    @apply text-sm font-normal leading-tight;
+  }
+  .b2 {
+    @apply text-sm font-medium leading-tight;
+  }
+  .b3 {
+    @apply text-sm font-medium leading-tight;
+  }
+  .b4 {
+    @apply text-sm font-normal leading-tight;
+  }
+  .b5 {
+    @apply text-sm font-medium leading-tight;
+  }
+  .b6 {
+    @apply text-sm font-bold leading-tight;
+  }
+  .b7 {
+    @apply text-sm font-normal leading-relaxed;
+  }
+  .b8 {
+    @apply text-sm font-medium leading-tight;
+  }
+  .b9 {
+    @apply text-sm font-medium leading-relaxed;
+  }
+  .b10 {
+    @apply text-sm font-normal leading-relaxed;
+  }
+  .c1 {
+    @apply text-xs font-medium leading-tight;
+  }
+  .c2 {
+    @apply text-xs font-normal leading-tight;
+  }
+  .c3 {
+    @apply text-xs font-medium leading-tight;
+  }
+}
