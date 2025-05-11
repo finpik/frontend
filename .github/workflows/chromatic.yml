@@ -5,6 +5,8 @@ on:
     branches: [main, develop]
     paths:
       - '**.stories.tsx'
+permissions:
+  pull-requests: write
 
 jobs:
   chromatic-deployment:
