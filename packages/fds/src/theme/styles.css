@@ -248,3 +248,27 @@
     @apply text-xs font-medium leading-tight;
   }
 }
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-between {
+    @apply flex justify-between;
+  }
+  .flex-between-align {
+    @apply flex items-center justify-between;
+  }
+  .flex-align {
+    @apply flex items-center;
+  }
+  .flex-column {
+    @apply flex flex-col;
+  }
+  .flex-column-between {
+    @apply flex flex-col justify-between;
+  }
+  .flex-column-align {
+    @apply flex flex-col items-center;
+  }
+}
