@@ -131,43 +131,46 @@
   --radius-xl: 50px;
 
   /* color */
-  --color-gray-1: oklch(5.3% 0.03 0);
-  --color-gray-2: oklch(18% 0.05 0);
-  --color-gray-3: oklch(30% 0.07 0);
-  --color-gray-4: oklch(42% 0.1 0);
-  --color-gray-5: oklch(54% 0.13 0);
-  --color-gray-6: oklch(65% 0.16 0);
-  --color-gray-7: oklch(66% 0.17 0);
-  --color-gray-8: oklch(77% 0.21 0);
-  --color-gray-9: oklch(90% 0.26 0);
-  --color-gray-10: oklch(95% 0.28 0);
-  --color-bg-1: oklch(100% 0.3 0);
-  --color-bg-2: oklch(97% 0.23 210);
-  --color-blue-1: oklch(98% 0.25 210);
-  --color-blue-2: oklch(65% 0.34 210);
-  --color-blue-3: oklch(50% 0.27 210);
-  --color-orange-1: oklch(98% 0.23 45);
-  --color-orange-2: oklch(70% 0.45 45);
-  --color-orange-3: oklch(55% 0.53 45);
-  --color-yellow-1: oklch(98% 0.23 60);
-  --color-yellow-2: oklch(70% 0.45 60);
-  --color-yellow-3: oklch(55% 0.53 60);
-  --color-green-1: oklch(94% 0.2 120);
-  --color-green-2: oklch(65% 0.34 120);
-  --color-green-3: oklch(50% 0.27 120);
-  --color-red-1: oklch(98% 0.23 0);
-  --color-red-2: oklch(70% 0.45 0);
-  --color-red-3: oklch(55% 0.53 0);
-  --color-pink-1: oklch(98% 0.23 330);
-  --color-pink-2: oklch(70% 0.45 330);
-  --color-pink-3: oklch(55% 0.53 330);
-  --color-purple-1: oklch(98% 0.25 270);
-  --color-purple-2: oklch(65% 0.34 270);
-  --color-purple-3: oklch(50% 0.27 270);
-  --color-pm-1: oklch(50% 0.27 240);
-  --color-pm-2: oklch(60% 0.3 240);
-  --color-pm-3: oklch(90% 0.25 240);
-  --color-vali-1: oklch(60% 0.5 0);
+  --color-gs-1: #111111;
+  --color-gs-2: #2e2e2e;
+  --color-gs-3: #4a4a4a;
+  --color-gs-4: #666666;
+  --color-gs-5: #838383;
+  --color-gs-6: #9a9a9a;
+  --color-gs-7: #a0a0a0;
+  --color-gs-8: #c1c1c1;
+  --color-gs-9: #e4e4e4;
+  --color-gs-10: #f4f4f4;
+  --color-bg-1: #ffffff;
+  --color-bg-2: #f2f5f7;
+  --color-blue-1: #f3f7fb;
+  --color-blue-2: #5dade2;
+  --color-blue-3: #35749f;
+  --color-orange-1: #fef5e7;
+  --color-orange-2: #f5b041;
+  --color-orange-3: #e67e22;
+  --color-yellow-1: #fef9e7;
+  --color-yellow-2: #f8d547;
+  --color-yellow-3: #be9c14;
+  --color-green-1: #f0f9f4;
+  --color-green-2: #58d68d;
+  --color-green-3: #1c7f46;
+  --color-red-1: #fff3f2;
+  --color-red-2: #e57373;
+  --color-red-3: #c0392b;
+  --color-pink-1: #fff3f8;
+  --color-pink-2: #f48fb1;
+  --color-pink-3: #d44278;
+  --color-purple-1: #fcf4ff;
+  --color-purple-2: #a569bd;
+  --color-purple-3: #6c3483;
+  --color-gray-1: #f7f7f7;
+  --color-gray-2: #c2c2c2;
+  --color-gray-3: #111111;
+  --color-pm-1: #4160ff;
+  --color-pm-2: #6c84ff;
+  --color-pm-3: #f3f5ff;
+  --color-vali-1: #ff2e2e;
 
   /* box-shadow */
   --shadow-1: 0px 0px 5px rgba(191, 191, 191, 0.25);
@@ -182,70 +185,70 @@
 /* typography */
 @layer utilities {
   .h1 {
-    @apply text-2xl font-bold leading-tight;
+    @apply text-2xl font-bold leading-[100%];
   }
   .h2 {
-    @apply text-xl font-normal leading-tight;
+    @apply text-xl font-semibold leading-[150%];
   }
   .h3 {
-    @apply text-lg font-bold leading-tight;
+    @apply text-lg font-bold leading-[100%];
   }
   .h4 {
-    @apply text-lg font-normal leading-tight;
+    @apply text-lg font-medium leading-[130%];
   }
   .h5 {
-    @apply text-lg font-medium leading-tight;
+    @apply text-lg font-normal leading-[100%];
   }
   .s1 {
-    @apply text-base font-normal leading-relaxed;
+    @apply text-base font-semibold leading-[160%];
   }
   .s2 {
-    @apply text-base font-normal leading-tight;
+    @apply text-base font-semibold leading-[100%];
   }
   .s3 {
-    @apply text-base font-medium leading-tight;
+    @apply text-base font-medium leading-[100%];
   }
   .s4 {
-    @apply text-base font-medium leading-tight;
+    @apply text-base font-medium leading-[100%];
   }
   .b1 {
-    @apply text-sm font-normal leading-tight;
+    @apply text-sm font-semibold leading-[100%];
   }
   .b2 {
-    @apply text-sm font-medium leading-tight;
+    @apply text-sm font-medium leading-[140%];
   }
   .b3 {
-    @apply text-sm font-medium leading-tight;
+    @apply text-sm font-medium leading-[100%];
   }
   .b4 {
-    @apply text-sm font-normal leading-tight;
+    @apply text-sm font-semibold leading-[150%];
   }
   .b5 {
-    @apply text-sm font-medium leading-tight;
+    @apply text-sm font-medium leading-[160%];
   }
   .b6 {
-    @apply text-sm font-bold leading-tight;
+    @apply text-sm font-bold leading-[150%];
   }
   .b7 {
-    @apply text-sm font-normal leading-relaxed;
+    @apply text-sm font-semibold leading-[160%];
   }
   .b8 {
-    @apply text-sm font-medium leading-tight;
+    @apply text-sm font-medium leading-[150%];
   }
   .b9 {
-    @apply text-sm font-medium leading-relaxed;
+    @apply text-sm font-medium leading-[160%];
   }
   .b10 {
-    @apply text-sm font-normal leading-relaxed;
+    @apply text-sm font-normal leading-[160%];
   }
   .c1 {
-    @apply text-xs font-medium leading-tight;
+    @apply text-xs font-medium leading-[140%];
   }
   .c2 {
-    @apply text-xs font-normal leading-tight;
+    @apply text-xs font-semibold leading-[140%];
   }
   .c3 {
-    @apply text-xs font-medium leading-tight;
+    @apply text-xs font-medium leading-[140%];
   }
 }
 

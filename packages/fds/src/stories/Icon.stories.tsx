@@ -18,7 +18,7 @@ const icons = Object.keys(iconMap)
 
 export function Default() {
   return (
-    <div className="grid grid-cols-4 bg-gray-3">
+    <div className="grid grid-cols-4 bg-gs-9">
       {icons.map((key) => (
         <div key={key} className="flex-align">
           <Icon key={key} name={key as keyof typeof iconMap} />
