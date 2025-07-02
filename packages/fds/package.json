@@ -17,6 +17,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.4.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
