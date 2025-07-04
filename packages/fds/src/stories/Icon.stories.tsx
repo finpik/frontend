@@ -1,4 +1,4 @@
-import { Icon, iconMap } from '../components/Icon'
+import { Icon, iconMap } from '@/components'
 
 const meta = {
   title: 'Icon',
