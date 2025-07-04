@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
-import { Button } from '../components'
+import { Button } from '@/components'
 
 const meta: Meta<typeof Button> = {
   title: 'Button',
@@ -10,19 +10,11 @@ const meta: Meta<typeof Button> = {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
-  args: {
-    onClick: () => alert('클릭'),
-  },
-}
-
-export const All = () => {
+export const Default = () => {
   return (
     <div className="flex-column gap-[20px]">
       <Button onClick={() => alert('클릭')}>버튼</Button>
-      <Button onClick={() => alert('dd')} disabled variant="disabled">
+      <Button onClick={() => alert('클릭')} disabled variant="disabled">
         버튼
       </Button>
       <Button onClick={() => alert('클릭')} variant="secondary">
