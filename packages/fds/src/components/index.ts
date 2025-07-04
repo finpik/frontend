@@ -1,3 +1,4 @@
 export * from './Icon'
 export * from './Button/Button'
 export * from './RadioGroup/RadioGroup'
+export * from './Label/Label'
