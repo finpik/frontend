@@ -9,7 +9,12 @@ function Label({ className, ...props }: React.ComponentProps<typeof LabelPrimiti
   return (
     <LabelPrimitive.Root
       data-slot="label"
-      className={cn('b8 text-gs-3 select-none peer-focus:text-pm-1', className)}
+      className={cn(
+        'b8 text-gs-3 w-full select-none',
+        'group-focus-within:text-pm-1',
+        'group-aria-[invalid=true]:!text-vali-1',
+        className,
+      )}
       {...props}
     />
   )

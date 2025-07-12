@@ -11,10 +11,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-pm-1 text-bg-1',
-        disabled: 'bg-gs-10 text-gs-7',
-        secondary: 'bg-gs-10 text-gs-3',
-        tonal: 'b3 bg-pm-3 text-pm-1',
+        default: 'bg-pm-1 text-bg-1 disabled:bg-gs-10 disabled:text-gs-7',
+        secondary: 'bg-gs-10 text-gs-3 disabled:bg-gs-10 disabled:text-gs-7',
+        tonal: 'b3 bg-pm-3 text-pm-1 disabled:bg-gs-10 disabled:text-gs-7',
       },
       size: {
         default: 'b1 h-[56px] py-[20px] rounded-md',

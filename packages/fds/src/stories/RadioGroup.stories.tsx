@@ -3,6 +3,8 @@ import type { Meta } from '@storybook/react'
 import { Button, RadioGroup, RadioGroupItem, Form, FormControl, FormField } from '@/components'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
+import z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const meta: Meta<typeof RadioGroup> = {
   title: 'RadioGroup',
@@ -15,18 +17,30 @@ export default meta
 type FormType = {
   radio1: string
   radio2: string
-  radio3: string
-  radio4: string
+  radio3?: string
+  radio4?: string
 }
+
+const schema = z.object({
+  radio1: z.string(),
+  radio2: z.string(),
+})
 
 const 옵션리스트 = ['옵션1', '옵션2']
 
 export const Default = () => {
-  const form = useForm<FormType>({})
-  const { control, handleSubmit } = form
+  const form = useForm<FormType>({
+    resolver: zodResolver(schema),
+  })
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = form
 
-  const submitFormHandler: (formData: FormType) => void = (formData) =>
+  const submitFormHandler: (formData: FormType) => void = (formData) => {
     alert(JSON.stringify(formData, null, 2))
+  }
 
   return (
     <div>
@@ -38,7 +52,7 @@ export const Default = () => {
             render={({ field }) => (
               <RadioGroup className="b2" onValueChange={field.onChange}>
                 {옵션리스트.map((옵션) => (
-                  <div className="flex-align space-x-[17px]">
+                  <div className="flex-align space-x-[17px]" key={옵션}>
                     <RadioGroupItem value={옵션} id={옵션} />
                     <label htmlFor={옵션}>{옵션}</label>
                   </div>
@@ -78,7 +92,7 @@ export const Default = () => {
             render={({ field }) => (
               <RadioGroup onValueChange={field.onChange}>
                 {옵션리스트.map((옵션) => (
-                  <div>
+                  <div key={옵션}>
                     <RadioGroupItem value={옵션} id={옵션} className="peer hidden" />
                     <label
                       htmlFor={옵션}
@@ -98,7 +112,7 @@ export const Default = () => {
             render={({ field }) => (
               <RadioGroup onValueChange={field.onChange}>
                 {옵션리스트.map((옵션) => (
-                  <div>
+                  <div key={옵션}>
                     <RadioGroupItem value={옵션} id={옵션} className="peer hidden" />
                     <label
                       htmlFor={옵션}
@@ -111,7 +125,7 @@ export const Default = () => {
               </RadioGroup>
             )}
           />
-          <Button type="submit" disabled={form.formState.isSubmitting}>
+          <Button type="submit" disabled={!isValid}>
             확인
           </Button>
         </form>

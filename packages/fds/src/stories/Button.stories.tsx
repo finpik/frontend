@@ -14,7 +14,7 @@ export const Default = () => {
   return (
     <div className="flex-column gap-[20px]">
       <Button onClick={() => alert('클릭')}>버튼</Button>
-      <Button onClick={() => alert('클릭')} disabled variant="disabled">
+      <Button onClick={() => alert('클릭')} disabled>
         버튼
       </Button>
       <Button onClick={() => alert('클릭')} variant="secondary">
