@@ -10,6 +10,7 @@ import { Delete } from './Delete'
 import { EllipseLong, EllipseShort } from './Ellipse'
 import { Error } from './Error'
 import { Go } from './Go'
+import { Handle } from './Handle'
 import { More } from './More'
 import { Mydata } from './Mydata'
 import { RadioDefault, RadioSelected } from './Radio'
@@ -57,6 +58,7 @@ export const iconMap = {
   'check1-selected': Check1Selected,
   'check2-default': Check2Default,
   'check2-selected': Check2Selected,
+  handle: Handle,
 }
 
 export interface IconComponentProps extends IconProps {
