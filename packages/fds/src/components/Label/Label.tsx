@@ -13,6 +13,7 @@ function Label({ className, ...props }: React.ComponentProps<typeof LabelPrimiti
         'b8 text-gs-3 w-full select-none',
         'group-focus-within:text-pm-1',
         'group-aria-[invalid=true]:!text-vali-1',
+        'group-aria-[expanded=true]:text-pm-1',
         className,
       )}
       {...props}
