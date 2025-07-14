@@ -281,13 +281,19 @@
   -webkit-appearance: none;
   margin: 0;
 }
-
 .no-spinner:focus::-webkit-outer-spin-button,
 .no-spinner:focus::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 .no-spinner {
   -moz-appearance: textfield;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

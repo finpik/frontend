@@ -1,12 +1,4 @@
-import {
-  SheetTrigger,
-  Button,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  Sheet,
-} from '@/components'
+import { SheetTrigger, Button, SheetContent, SheetHeader, SheetTitle, Sheet } from '@/components'
 import { Meta } from '@storybook/react'
 
 const meta: Meta<typeof Sheet> = {
