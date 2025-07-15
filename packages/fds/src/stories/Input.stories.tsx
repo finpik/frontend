@@ -86,7 +86,7 @@ export const Default = () => {
             name="input2"
             render={({ field }) => (
               <div className="group">
-                <FormLabel htmlFor="input1" className="mx-[6px] mt-[11px] mb-[2px]">
+                <FormLabel htmlFor="input2" className="mx-[6px] mt-[11px] mb-[2px]">
                   라벨
                 </FormLabel>
                 <FormControl>
@@ -106,7 +106,7 @@ export const Default = () => {
             name="input3"
             render={({ field }) => (
               <div className="group">
-                <FormLabel htmlFor="input1" className="mx-[6px] mt-[11px] mb-[2px]">
+                <FormLabel htmlFor="input3" className="mx-[6px] mt-[11px] mb-[2px]">
                   라벨
                 </FormLabel>
                 <div className="relative">
@@ -115,7 +115,7 @@ export const Default = () => {
                       id="input3"
                       placeholder="플레이스홀더"
                       type="number"
-                      className="s3 px-[6px] py-[11px] no-spinner"
+                      className="h5 px-[6px] py-[11px] no-spinner"
                       {...field}
                     />
                   </FormControl>

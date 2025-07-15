@@ -177,8 +177,8 @@
   --shadow-2: 2px 3px 4px rgba(17, 17, 17, 0.25);
   --shadow-3: 2px 3px 4px rgba(102, 102, 102, 0.25);
   --shadow-4: 3px 3px 4px rgba(102, 102, 102, 0.25);
-  --shadow-5: 0px 0px 4px rgba(118, 118, 118, 0.25);
-  --shadow-6: 2px 3px 4px rgba(118, 118, 118, 0.25);
+  --shadow-5: 0px 0px 7px rgba(118, 118, 118, 0.25);
+  --shadow-6: 0px 4px 7px rgba(118, 118, 118, 0.25);
   --shadow-7: 0px -2px 7px rgba(118, 118, 118, 0.25);
 }
 
