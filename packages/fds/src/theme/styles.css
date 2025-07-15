@@ -185,70 +185,70 @@
 /* typography */
 @layer utilities {
   .h1 {
-    @apply text-2xl font-bold leading-[100%];
+    @apply text-[24px] font-bold leading-[100%];
   }
   .h2 {
-    @apply text-xl font-semibold leading-[150%];
+    @apply text-[22px] font-semibold leading-[150%];
   }
   .h3 {
-    @apply text-lg font-bold leading-[100%];
+    @apply text-[20px] font-bold leading-[100%];
   }
   .h4 {
-    @apply text-lg font-medium leading-[130%];
+    @apply text-[20px] font-semibold leading-[130%];
   }
   .h5 {
-    @apply text-lg font-normal leading-[100%];
+    @apply text-[20px] font-medium leading-[100%];
   }
   .s1 {
-    @apply text-base font-semibold leading-[160%];
+    @apply text-[18px] font-semibold leading-[160%];
   }
   .s2 {
-    @apply text-base font-semibold leading-[100%];
+    @apply text-[18px] font-semibold leading-[100%];
   }
   .s3 {
-    @apply text-base font-medium leading-[100%];
+    @apply text-[18px] font-medium leading-[100%];
   }
   .s4 {
-    @apply text-base font-medium leading-[100%];
+    @apply text-[18px] font-medium leading-[100%];
   }
   .b1 {
-    @apply text-sm font-semibold leading-[100%];
+    @apply text-[16px] font-semibold leading-[100%];
   }
   .b2 {
-    @apply text-sm font-medium leading-[140%];
+    @apply text-[16px] font-medium leading-[140%];
   }
   .b3 {
-    @apply text-sm font-medium leading-[100%];
+    @apply text-[16px] font-medium leading-[100%];
   }
   .b4 {
-    @apply text-sm font-semibold leading-[150%];
+    @apply text-[15px] font-semibold leading-[150%];
   }
   .b5 {
-    @apply text-sm font-medium leading-[160%];
+    @apply text-[15px] font-medium leading-[160%];
   }
   .b6 {
-    @apply text-sm font-bold leading-[150%];
+    @apply text-[14px] font-bold leading-[150%];
   }
   .b7 {
-    @apply text-sm font-semibold leading-[160%];
+    @apply text-[14px] font-semibold leading-[160%];
   }
   .b8 {
-    @apply text-sm font-medium leading-[150%];
+    @apply text-[14px] font-medium leading-[150%];
   }
   .b9 {
-    @apply text-sm font-medium leading-[160%];
+    @apply text-[14px] font-medium leading-[160%];
   }
   .b10 {
-    @apply text-sm font-normal leading-[160%];
+    @apply text-[14px] font-normal leading-[160%];
   }
   .c1 {
-    @apply text-xs font-medium leading-[140%];
+    @apply text-[13px] font-medium leading-[140%];
   }
   .c2 {
-    @apply text-xs font-semibold leading-[140%];
+    @apply text-[12px] font-semibold leading-[140%];
   }
   .c3 {
-    @apply text-xs font-medium leading-[140%];
+    @apply text-[12px] font-medium leading-[140%];
   }
 }
 
