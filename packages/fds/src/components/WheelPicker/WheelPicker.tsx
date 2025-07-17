@@ -109,7 +109,10 @@ export function WheelPicker({ items, value, onChange }: WheelPickerProps) {
   }
 
   return (
-    <div className="relative w-[100px] overflow-hidden" style={{ height: CONTAINER_HEIGHT }}>
+    <div
+      className="relative w-[100px] overflow-hidden cursor-pointer"
+      style={{ height: CONTAINER_HEIGHT }}
+    >
       <div className="absolute top-1/2 left-0 right-0 h-[30.4px] -translate-y-1/2 z-10" />
       <List
         height={CONTAINER_HEIGHT}

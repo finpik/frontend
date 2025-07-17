@@ -33,7 +33,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          'flex-between-align flex-1 p-[20px] text-left b2 transition-all outline-none disabled:pointer-events-none [&[data-state=open]>span]:rotate-180',
+          'flex-between-align flex-1 p-[20px] text-left b2 transition-all outline-none disabled:pointer-events-none [&[data-state=open]>span]:rotate-180 cursor-pointer',
           className,
         )}
         {...props}
