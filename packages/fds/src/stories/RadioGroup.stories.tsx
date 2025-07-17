@@ -54,7 +54,9 @@ export const Default = () => {
                 {옵션리스트.map((옵션) => (
                   <div className="flex-align space-x-[17px]" key={옵션}>
                     <RadioGroupItem value={옵션} id={옵션} />
-                    <label htmlFor={옵션}>{옵션}</label>
+                    <label htmlFor={옵션} className="cursor-pointer">
+                      {옵션}
+                    </label>
                   </div>
                 ))}
               </RadioGroup>
@@ -69,14 +71,14 @@ export const Default = () => {
                 <RadioGroup className="s2" onValueChange={field.onChange}>
                   <div className="flex space-x-[17px]">
                     <RadioGroupItem value="옵션1" id="옵션1" />
-                    <label htmlFor="옵션1" className="flex-column gap-[8px]">
+                    <label htmlFor="옵션1" className="flex-column gap-[8px] cursor-pointer">
                       옵션1
                       <div className="b8 text-gs-6">옵션 설명1</div>
                     </label>
                   </div>
                   <div className="flex space-x-[17px]">
                     <RadioGroupItem value="옵션2" id="옵션2" />
-                    <label htmlFor="옵션2" className="flex-column gap-[8px]">
+                    <label htmlFor="옵션2" className="flex-column gap-[8px] cursor-pointer">
                       옵션2
                       <div className="b8 text-gs-6">옵션 설명2</div>
                     </label>
