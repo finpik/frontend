@@ -11,7 +11,7 @@ export const Error = (props: IconProps) => {
       viewBox="0 0 20 20"
       fill="none"
     >
-      <g clip-path="url(#clip0_1357_14330)">
+      <g clipPath="url(#clip0_1357_14330)">
         <mask
           id="mask0_1357_14330"
           maskUnits="userSpaceOnUse"
