@@ -1,0 +1,209 @@
+type AuthResult {
+  accessToken: String!
+}
+
+input CreateProfileInput {
+  annualIncome: Int
+  creditGradeStatus: CreditGradeStatus
+  creditScore: Int
+  desiredLoanAmount: Int!
+  employmentDate: Date
+  employmentForm: EmploymentForm
+  loanProductUsageCount: Int!
+  loanProductUsageStatus: LoanProductUsageStatus!
+  occupation: Occupation!
+  profileColor: ProfileColor!
+  profileName: String!
+  purposeOfLoan: PurposeOfLoan!
+  totalLoanUsageAmount: Int!
+}
+
+enum CreditGradeStatus {
+  EXCELLENT
+  FAIR
+  GOOD
+  POOR
+  VERY_POOR
+}
+
+"""An RFC-3339 compliant Full Date Scalar"""
+scalar Date
+
+"""A slightly refined version of RFC-3339 compliant DateTime Scalar"""
+scalar DateTime
+
+enum EmploymentForm {
+  CONTRACT
+  FULL_TIME
+}
+
+enum Gender {
+  FEMALE
+  MALE
+}
+
+type LoanProductDescriptionResult {
+  interestRateGuide: String!
+  loanPrerequisite: String!
+  loanTargetGuide: String!
+  maxLoanLimitGuide: String!
+  notesOnLoan: String!
+  preLoanChecklist: String!
+  repaymentPeriodGuide: String!
+}
+
+type LoanProductResult {
+  bankName: String!
+  descriptionResult: LoanProductDescriptionResult!
+  maxInterestRate: Float
+  maxLoanLimitAmount: Int
+  minInterestRate: Float
+  productName: String!
+  repaymentPeriod: Int
+  repaymentPeriodUnit: RepaymentPeriodUnit
+}
+
+enum LoanProductUsageStatus {
+  NOT_USING
+  USING
+}
+
+enum LoanUsageStatus {
+  NOT_USING
+  USING
+}
+
+"""
+24-hour clock time value string in the format `hh:mm:ss` or `hh:mm:ss.sss`.
+"""
+scalar LocalTime
+
+"""A 64-bit signed integer"""
+scalar Long
+
+type Mutation {
+  createProfile(input: CreateProfileInput!): ProfileResult!
+  deleteProfile(deletedId: Long): [ProfileResult]!
+  refresh: AuthResult!
+  signUp(input: SignUpInput!): SignUpResult!
+  updateProfile(input: UpdateProfileInput!): ProfileResult!
+  updateProfileColor(input: UpdateProfileColorInput!): ProfileResult!
+  updateProfileSequence(input: [UpdateProfileSequenceInput]!): [ProfileResult]!
+}
+
+enum Occupation {
+  EMPLOYEE
+  OTHER
+  PUBLIC_SERVANT
+  SELF_EMPLOYED
+  UNEMPLOYED
+}
+
+enum ProfileColor {
+  BLUE_TWO
+  GRAY_TWO
+  GREEN_TWO
+  ORANGE_THREE
+  PINK_TWO
+  PURPLE_TWO
+  RED_TWO
+  YELLOW_TWO
+}
+
+type ProfileResult {
+  creditGradeStatus: CreditGradeStatus!
+  desiredLoanAmount: Int!
+  loanProductUsageCount: Int!
+  occupation: Occupation!
+  profileColor: ProfileColor!
+  profileId: Long!
+  profileName: String!
+  profileSeq: Int!
+  purposeOfLoan: PurposeOfLoan!
+  totalLoanUsageAmount: Int!
+}
+
+enum PurposeOfLoan {
+  BUSINESS_FUNDS
+  HOUSING
+  LIVING_EXPENSES
+  LOAN_REPAYMENT
+  MEDICAL_OR_EMERGENCY
+  TUITION
+}
+
+type Query {
+  getLoanProduct(loanProductId: Long!): LoanProductResult!
+  getLoanProducts(profileId: Long!): [RecommendedLoanProductResult]!
+  getProfileById(profileId: Long): ProfileResult!
+  getProfilesByUser: [ProfileResult]!
+  getRelatedLoanProductList(loanProductId: Long!): [RelatedLoanProductResult]!
+}
+
+type RecommendedLoanProductResult {
+  bankName: String!
+  loanProductId: Long!
+  maxInterestRate: Float
+  maxLoanLimitAmount: Long
+  minInterestRate: Float
+  productName: String!
+  profileId: Long!
+  recommendedLoanProductId: Long!
+}
+
+type RelatedLoanProductResult {
+  loanProductId: Long!
+  maxInterestRate: Float
+  maxLoanLimitAmount: Int
+  minInterestRate: Float
+  productName: String!
+}
+
+enum RepaymentPeriodUnit {
+  MONTH
+  YEAR
+}
+
+input SignUpInput {
+  dateOfBirth: Date!
+  gender: Gender
+  provider: String!
+  username: String!
+  vendorId: String!
+}
+
+type SignUpResult {
+  accessToken: String!
+  dateOfBirth: String!
+  email: String!
+  gender: Gender!
+  userId: ID!
+  username: String!
+}
+
+input UpdateProfileColorInput {
+  id: Long!
+  profileColor: ProfileColor!
+}
+
+input UpdateProfileInput {
+  annualIncome: Int!
+  businessStartDate: Date
+  creditGradeStatus: CreditGradeStatus
+  creditScore: Int
+  desiredLoanAmount: Int
+  employmentDate: Date
+  employmentForm: EmploymentForm!
+  loanProductUsageCount: Int
+  loanProductUsageStatus: LoanProductUsageStatus
+  occupation: Occupation!
+  profileId: Long!
+  profileName: String
+  purposeOfLoan: PurposeOfLoan
+  totalLoanUsageAmount: Int
+}
+
+input UpdateProfileSequenceInput {
+  id: Long!
+  seq: Int!
+}
