@@ -26,6 +26,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.59.0(react@19.1.0))
       '@repo/fds':
         specifier: workspace:*
         version: link:../../packages/fds
@@ -38,6 +41,9 @@ importers:
       '@use-funnel/browser':
         specifier: ^0.0.15
         version: 0.0.15(react@19.1.0)
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       next:
         specifier: ^15.3.0
         version: 15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -50,10 +56,19 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.59.0
+        version: 7.59.0(react@19.1.0)
       tailwindcss:
         specifier: ^4.1.5
         version: 4.1.5
+      zod:
+        specifier: ^3.25.67
+        version: 3.25.67
     devDependencies:
+      '@hookform/devtools':
+        specifier: ^4.4.0
+        version: 4.4.0(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
