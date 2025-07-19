@@ -1,0 +1,20 @@
+query GetLoanProduct($loanProductId: Long!) {
+  getLoanProduct(loanProductId: $loanProductId) {
+    bankName
+    descriptionResult {
+      interestRateGuide
+      loanPrerequisite
+      loanTargetGuide
+      maxLoanLimitGuide
+      notesOnLoan
+      preLoanChecklist
+      repaymentPeriodGuide
+    }
+    maxInterestRate
+    maxLoanLimitAmount
+    minInterestRate
+    productName
+    repaymentPeriod
+    repaymentPeriodUnit
+  }
+}

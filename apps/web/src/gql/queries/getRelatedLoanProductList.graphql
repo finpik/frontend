@@ -1,0 +1,9 @@
+query GetRelatedLoanProductList($loanProductId: Long!) {
+  getRelatedLoanProductList(loanProductId: $loanProductId) {
+    loanProductId
+    productName
+    minInterestRate
+    maxInterestRate
+    maxLoanLimitAmount
+  }
+}

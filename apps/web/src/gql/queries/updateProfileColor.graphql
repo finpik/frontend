@@ -1,0 +1,6 @@
+mutation UpdateProfileColor($input: UpdateProfileColorInput!) {
+  updateProfileColor(input: $input) {
+    profileId
+    profileColor
+  }
+}

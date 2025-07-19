@@ -1,0 +1,12 @@
+query GetLoanProducts($profileId: Long!) {
+  getLoanProducts(profileId: $profileId) {
+    recommendedLoanProductId
+    profileId
+    bankName
+    loanProductId
+    productName
+    minInterestRate
+    maxInterestRate
+    maxLoanLimitAmount
+  }
+}

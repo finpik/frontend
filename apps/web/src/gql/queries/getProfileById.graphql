@@ -1,0 +1,14 @@
+query GetProfileById($profileId: Long) {
+  getProfileById(profileId: $profileId) {
+    profileId
+    profileName
+    profileColor
+    occupation
+    creditGradeStatus
+    desiredLoanAmount
+    loanProductUsageCount
+    purposeOfLoan
+    totalLoanUsageAmount
+    profileSeq
+  }
+}
