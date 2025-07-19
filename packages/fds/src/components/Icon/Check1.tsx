@@ -11,7 +11,7 @@ export const Check1Default = (props: IconProps) => {
       viewBox="0 0 20 20"
       fill="none"
     >
-      <g clip-path="url(#clip0_1357_27341)">
+      <g clipPath="url(#clip0_1357_27341)">
         <path
           d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z"
           fill="white"
@@ -39,7 +39,7 @@ export const Check1Selected = (props: IconProps) => {
       viewBox="0 0 20 20"
       fill="none"
     >
-      <g clip-path="url(#clip0_1357_27343)">
+      <g clipPath="url(#clip0_1357_27343)">
         <path
           d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z"
           fill={color}

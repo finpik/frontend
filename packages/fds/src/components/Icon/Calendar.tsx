@@ -11,7 +11,7 @@ export const Calendar = (props: IconProps) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g clip-path="url(#clip0_1357_14300)">
+      <g clipPath="url(#clip0_1357_14300)">
         <mask
           id="mask0_1357_14300"
           maskUnits="userSpaceOnUse"

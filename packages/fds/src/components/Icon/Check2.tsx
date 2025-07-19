@@ -14,7 +14,7 @@ export const Check2Default = (props: IconProps) => {
       <path
         d="M18 29C24.0751 29 29 24.0751 29 18C29 11.9249 24.0751 7 18 7C11.9249 7 7 11.9249 7 18C7 24.0751 11.9249 29 18 29Z"
         stroke={color}
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   )

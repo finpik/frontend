@@ -11,7 +11,7 @@ export const Close = (props: IconProps) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g clip-path="url(#clip0_1357_14294)">
+      <g clipPath="url(#clip0_1357_14294)">
         <mask id="mask0_1357_14294" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
           <path d="M24 0H0V24H24V0Z" fill="#D9D9D9" />
         </mask>
