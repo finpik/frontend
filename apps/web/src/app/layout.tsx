@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.variable} font-pretendard`}>{children}</body>
+      <body className={`${pretendard.variable} font-pretendard`}>
+        <div className="layout">{children}</div>
+      </body>
     </html>
   )
 }

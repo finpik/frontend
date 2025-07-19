@@ -1,5 +1,17 @@
+@import 'tailwindcss';
 @import '@repo/fds/theme';
 
 @theme inline {
   --font-pretendard: var(--font-pretendard);
+}
+
+@layer base {
+  /* layout */
+  :root {
+    --layout-max-w: 520px;
+    --layout-min-h: 100dvh;
+  }
+  .layout {
+    @apply max-w-[var(--layout-max-w)] min-h-[var(--layout-min-h)] w-full mx-auto relative;
+  }
 }
