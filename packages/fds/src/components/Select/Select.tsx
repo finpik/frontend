@@ -44,14 +44,14 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <>
+        <div>
           <span className="block group-data-[state=open]:hidden transition-transform">
             <Icon name="triangle2-down" />
           </span>
           <span className="hidden group-data-[state=open]:block transition-transform">
             <Icon name="triangle2-up" />
           </span>
-        </>
+        </div>
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   )

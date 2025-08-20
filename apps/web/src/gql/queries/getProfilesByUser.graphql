@@ -1,14 +1,15 @@
 query GetProfilesByUser {
   getProfilesByUser {
-    profileId
-    profileName
-    profileColor
-    occupation
+    annualIncome
     creditGradeStatus
     desiredLoanAmount
     loanProductUsageCount
+    occupation
+    profileColor
+    profileId
+    profileName
+    profileSeq
     purposeOfLoan
     totalLoanUsageAmount
-    profileSeq
   }
 }

@@ -92,13 +92,13 @@ export const Default = () => {
             control={form.control}
             name="radio3"
             render={({ field }) => (
-              <RadioGroup onValueChange={field.onChange}>
+              <RadioGroup onValueChange={field.onChange} className="flex-align gap-[5px]">
                 {옵션리스트.map((옵션) => (
-                  <div key={옵션}>
+                  <div key={옵션} className="w-full">
                     <RadioGroupItem value={옵션} id={옵션} className="peer hidden" />
                     <label
                       htmlFor={옵션}
-                      className="w-fit flex flex-col items-center justify-center whitespace-nowrap rounded-sm disabled:pointer-events-none cursor-pointer s4 h-[54px] px-[56px] py-[18px] border-[1.5px] bg-bg-1 text-gs-2 peer-data-[state=checked]:border-pm-1 peer-data-[state=checked]:border-[1.7px] peer-data-[state=checked]:bg-pm-3 peer-data-[state=checked]:text-pm-1 peer-data-[state=checked]:s2"
+                      className="w-full flex items-center justify-center whitespace-nowrap rounded-sm disabled:pointer-events-none cursor-pointer s4 h-[54px] px-[56px] py-[18px] border-[1.5px] bg-bg-1 text-gs-2 peer-data-[state=checked]:border-pm-1 peer-data-[state=checked]:border-[1.7px] peer-data-[state=checked]:bg-pm-3 peer-data-[state=checked]:text-pm-1 peer-data-[state=checked]:s2"
                     >
                       {옵션}
                     </label>
@@ -118,7 +118,7 @@ export const Default = () => {
                     <RadioGroupItem value={옵션} id={옵션} className="peer hidden" />
                     <label
                       htmlFor={옵션}
-                      className="w-fit flex flex-col items-center justify-center whitespace-nowrap rounded-sm disabled:pointer-events-none cursor-pointer b3 h-[48px] px-[48px] py-[16px] border-[1.5px] bg-bg-1 text-gs-2 peer-data-[state=checked]:border-pm-1 peer-data-[state=checked]:border-[1.7px] peer-data-[state=checked]:bg-pm-3 peer-data-[state=checked]:text-pm-1 peer-data-[state=checked]:b1"
+                      className="w-fit flex items-center justify-center whitespace-nowrap rounded-sm disabled:pointer-events-none cursor-pointer b3 h-[48px] px-[48px] py-[16px] border-[1.5px] bg-bg-1 text-gs-2 peer-data-[state=checked]:border-pm-1 peer-data-[state=checked]:border-[1.7px] peer-data-[state=checked]:bg-pm-3 peer-data-[state=checked]:text-pm-1 peer-data-[state=checked]:b1"
                     >
                       {옵션}
                     </label>

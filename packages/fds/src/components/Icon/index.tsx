@@ -1,3 +1,4 @@
+import { Check } from './Check'
 import { Align } from './Align'
 import { ArrowDown, ArrowUp } from './Arrow'
 import { ArrowBackIos } from './ArrowBackIos'
@@ -54,6 +55,7 @@ export const iconMap = {
   'radio-default': RadioDefault,
   'arrow-down': ArrowDown,
   'arrow-up': ArrowUp,
+  check: Check,
   'check1-default': Check1Default,
   'check1-selected': Check1Selected,
   'check2-default': Check2Default,

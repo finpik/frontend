@@ -1,0 +1,29 @@
+query GetLoanProductList(
+  $page: Int!
+  $profileId: Long!
+  $size: Int!
+  $sortDirection: SortDirection = DESC
+  $sortProperty: String!
+) {
+  getLoanProductList(
+    page: $page
+    profileId: $profileId
+    size: $size
+    sortDirection: $sortDirection
+    sortProperty: $sortProperty
+  ) {
+    content {
+      bankName
+      loanProductId
+      maxInterestRate
+      maxLoanLimitAmount
+      minInterestRate
+      productName
+      profileId
+      recommendedLoanProductId
+    }
+    hasNext
+    page
+    size
+  }
+}

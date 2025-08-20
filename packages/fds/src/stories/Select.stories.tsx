@@ -2,7 +2,6 @@
 
 import {
   FormField,
-  Input,
   Form,
   FormLabel,
   Button,
@@ -74,7 +73,10 @@ export const Default = () => {
                 </FormLabel>
                 <Select open={open} onOpenChange={setOpen} onValueChange={field.onChange}>
                   <FormControl>
-                    <SelectTrigger className="group s3 px-[6px] py-[11px]" id="option">
+                    <SelectTrigger
+                      className={cn('group s3 px-[6px] py-[11px]', !field.value && 'text-gs-7')}
+                      id="option"
+                    >
                       <SelectValue placeholder="선택해주세요" />
                     </SelectTrigger>
                   </FormControl>

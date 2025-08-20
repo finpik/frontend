@@ -2,13 +2,5 @@ mutation DeleteProfile($deletedId: Long) {
   deleteProfile(deletedId: $deletedId) {
     profileId
     profileName
-    profileColor
-    occupation
-    creditGradeStatus
-    desiredLoanAmount
-    loanProductUsageCount
-    purposeOfLoan
-    totalLoanUsageAmount
-    profileSeq
   }
 }
