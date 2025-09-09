@@ -1,14 +1,15 @@
-query GetProfileById($profileId: Long) {
+query GetProfileById($profileId: Long!) {
   getProfileById(profileId: $profileId) {
-    profileId
-    profileName
-    profileColor
-    occupation
+    annualIncome
     creditGradeStatus
     desiredLoanAmount
     loanProductUsageCount
+    occupation
+    profileColor
+    profileId
+    profileName
+    profileSeq
     purposeOfLoan
     totalLoanUsageAmount
-    profileSeq
   }
 }

@@ -5,7 +5,6 @@ import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-reac
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { Button } from '@/components'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -210,9 +209,9 @@ function CarouselNext({ className, ...props }: React.ComponentProps<'button'>) {
   )
 }
 
-function CarouselDots({ length }: { length: number }) {
+function CarouselDots({ length, index }: { length: number; index?: number }) {
   const { api } = useCarousel()
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [selectedIndex, setSelectedIndex] = React.useState(index ?? 0)
 
   React.useEffect(() => {
     if (!api) return
@@ -247,6 +246,7 @@ function CarouselDots({ length }: { length: number }) {
 
 export {
   type CarouselApi,
+  useCarousel,
   Carousel,
   CarouselContent,
   CarouselItem,

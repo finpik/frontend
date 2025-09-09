@@ -1,0 +1,25 @@
+mutation UpdateLoanProductBadgeAndPrerequisite(
+  $inputList: [UpdateLoanProductAndPrerequisiteInput]
+) {
+  updateLoanProductBadgeAndPrerequisite(inputList: $inputList) {
+    productName
+    loanProductBadgeList
+    maxLoanLimitAmount
+    minInterestRate
+    maxInterestRate
+    bankName
+    url
+    repaymentPeriod
+    repaymentPeriodUnit
+    descriptionResult {
+      interestRateGuide
+      loanPrerequisite
+      loanTargetGuide
+      maxLoanLimitGuide
+      notesOnLoan
+      preLoanChecklist
+      repaymentFeeGuide
+      repaymentPeriodGuide
+    }
+  }
+}

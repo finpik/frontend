@@ -4,11 +4,12 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
     profileName
     profileColor
     occupation
-    creditGradeStatus
-    desiredLoanAmount
-    loanProductUsageCount
     purposeOfLoan
+    annualIncome
+    desiredLoanAmount
     totalLoanUsageAmount
+    creditGradeStatus
+    loanProductUsageCount
     profileSeq
   }
 }

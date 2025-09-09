@@ -1,12 +1,13 @@
 'use client'
 
-import { ApolloClient, InMemoryCache, ApolloProvider as Provider } from '@apollo/client'
+import { ApolloClient, from, InMemoryCache, ApolloProvider as Provider } from '@apollo/client'
 import { PropsWithChildren } from 'react'
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+import { authLink } from '../libs/authLink'
+import { errorLink } from '../libs/errorLink'
+import { httpLink } from '../libs/httpLink'
 
 const client = new ApolloClient({
-  uri: `${BASE_URL}/graphql`,
+  link: from([errorLink, authLink, httpLink]),
   cache: new InMemoryCache(),
 })
 

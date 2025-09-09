@@ -1,5 +1,5 @@
-query GetLoanProduct($loanProductId: Long!) {
-  getLoanProduct(loanProductId: $loanProductId) {
+query GetLoanProduct($loanProductId: Long!, $profileId: Long!) {
+  getLoanProduct(loanProductId: $loanProductId, profileId: $profileId) {
     bankName
     descriptionResult {
       interestRateGuide
@@ -8,13 +8,16 @@ query GetLoanProduct($loanProductId: Long!) {
       maxLoanLimitGuide
       notesOnLoan
       preLoanChecklist
+      repaymentFeeGuide
       repaymentPeriodGuide
     }
+    loanProductBadgeList
     maxInterestRate
     maxLoanLimitAmount
     minInterestRate
     productName
     repaymentPeriod
     repaymentPeriodUnit
+    url
   }
 }

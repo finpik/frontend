@@ -1,14 +1,6 @@
-mutation DeleteProfile($deletedId: Long) {
-  deleteProfile(deletedId: $deletedId) {
+mutation DeleteProfile($deletedIdList: [Long]) {
+  deleteProfile(deletedIdList: $deletedIdList) {
     profileId
     profileName
-    profileColor
-    occupation
-    creditGradeStatus
-    desiredLoanAmount
-    loanProductUsageCount
-    purposeOfLoan
-    totalLoanUsageAmount
-    profileSeq
   }
 }

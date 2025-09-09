@@ -2,8 +2,19 @@ type AuthResult {
   accessToken: String!
 }
 
+enum BusinessType {
+  ETC
+  FRANCHISE
+  MEDICAL
+  ONLINE_SHOP
+  RESTAURANT
+  RETAIL
+}
+
 input CreateProfileInput {
   annualIncome: Int
+  businessStartDate: Date
+  businessType: BusinessType
   creditGradeStatus: CreditGradeStatus
   creditScore: Int
   desiredLoanAmount: Int!
@@ -35,6 +46,7 @@ scalar DateTime
 enum EmploymentForm {
   CONTRACT
   FULL_TIME
+  OTHER
 }
 
 enum Gender {
@@ -42,33 +54,45 @@ enum Gender {
   MALE
 }
 
+enum LoanProductBadge {
+  """프로필의 조건과 제일 잘 맞아요"""
+  BEST_PROFILE_MATCH
+
+  """최대한도가 가장 높아요"""
+  HIGHEST_MAX_LOAN_AMOUNT_LIMIT
+
+  """즉시 입금 가능해요"""
+  INSTANT_DEPOSIT
+
+  """최저금리가 제일 낮은 상품"""
+  LOWEST_MIN_INTEREST_RATE
+}
+
 type LoanProductDescriptionResult {
-  interestRateGuide: String!
-  loanPrerequisite: String!
-  loanTargetGuide: String!
-  maxLoanLimitGuide: String!
-  notesOnLoan: String!
+  interestRateGuide: String
+  loanPrerequisite: String
+  loanTargetGuide: String
+  maxLoanLimitGuide: String
+  notesOnLoan: String
   preLoanChecklist: String!
-  repaymentPeriodGuide: String!
+  repaymentFeeGuide: String
+  repaymentPeriodGuide: String
 }
 
 type LoanProductResult {
   bankName: String!
   descriptionResult: LoanProductDescriptionResult!
+  loanProductBadgeList: [LoanProductBadge]
   maxInterestRate: Float
   maxLoanLimitAmount: Int
   minInterestRate: Float
   productName: String!
   repaymentPeriod: Int
   repaymentPeriodUnit: RepaymentPeriodUnit
+  url: String!
 }
 
 enum LoanProductUsageStatus {
-  NOT_USING
-  USING
-}
-
-enum LoanUsageStatus {
   NOT_USING
   USING
 }
@@ -83,9 +107,10 @@ scalar Long
 
 type Mutation {
   createProfile(input: CreateProfileInput!): ProfileResult!
-  deleteProfile(deletedId: Long): [ProfileResult]!
+  deleteProfile(deletedIdList: [Long]): [ProfileResult]!
   refresh: AuthResult!
   signUp(input: SignUpInput!): SignUpResult!
+  updateLoanProductBadgeAndPrerequisite(inputList: [UpdateLoanProductAndPrerequisiteInput]): [LoanProductResult]
   updateProfile(input: UpdateProfileInput!): ProfileResult!
   updateProfileColor(input: UpdateProfileColorInput!): ProfileResult!
   updateProfileSequence(input: [UpdateProfileSequenceInput]!): [ProfileResult]!
@@ -100,17 +125,18 @@ enum Occupation {
 }
 
 enum ProfileColor {
-  BLUE_TWO
-  GRAY_TWO
-  GREEN_TWO
-  ORANGE_THREE
-  PINK_TWO
-  PURPLE_TWO
-  RED_TWO
-  YELLOW_TWO
+  BLUE
+  GRAY
+  GREEN
+  ORANGE
+  PINK
+  PURPLE
+  RED
+  YELLOW
 }
 
 type ProfileResult {
+  annualIncome: Int!
   creditGradeStatus: CreditGradeStatus!
   desiredLoanAmount: Int!
   loanProductUsageCount: Int!
@@ -133,8 +159,8 @@ enum PurposeOfLoan {
 }
 
 type Query {
-  getLoanProduct(loanProductId: Long!): LoanProductResult!
-  getLoanProducts(profileId: Long!): [RecommendedLoanProductResult]!
+  getLoanProduct(loanProductId: Long!, profileId: Long!): LoanProductResult!
+  getLoanProductList(page: Int!, profileId: Long!, size: Int!, sortDirection: SortDirection = DESC, sortProperty: String!): RecommendedLoanProductResultList!
   getProfileById(profileId: Long): ProfileResult!
   getProfilesByUser: [ProfileResult]!
   getRelatedLoanProductList(loanProductId: Long!): [RelatedLoanProductResult]!
@@ -148,10 +174,20 @@ type RecommendedLoanProductResult {
   minInterestRate: Float
   productName: String!
   profileId: Long!
-  recommendedLoanProductId: Long!
+
+  """여기 변경 됨 2025-08-29"""
+  recommendedLoanProductId: String!
+}
+
+type RecommendedLoanProductResultList {
+  content: [RecommendedLoanProductResult]!
+  hasNext: Boolean
+  page: Int
+  size: Int
 }
 
 type RelatedLoanProductResult {
+  bankName: String!
   loanProductId: Long!
   maxInterestRate: Float
   maxLoanLimitAmount: Int
@@ -181,6 +217,17 @@ type SignUpResult {
   username: String!
 }
 
+enum SortDirection {
+  ASC
+  DESC
+}
+
+input UpdateLoanProductAndPrerequisiteInput {
+  loanPrerequisite: String
+  loanProductBadgeList: [LoanProductBadge]
+  loanProductId: Long
+}
+
 input UpdateProfileColorInput {
   id: Long!
   profileColor: ProfileColor!
@@ -189,6 +236,7 @@ input UpdateProfileColorInput {
 input UpdateProfileInput {
   annualIncome: Int!
   businessStartDate: Date
+  businessType: BusinessType
   creditGradeStatus: CreditGradeStatus
   creditScore: Int
   desiredLoanAmount: Int

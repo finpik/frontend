@@ -1,6 +1,7 @@
 mutation UpdateProfileSequence($input: [UpdateProfileSequenceInput]!) {
   updateProfileSequence(input: $input) {
     profileId
+    profileName
     profileSeq
   }
 }
