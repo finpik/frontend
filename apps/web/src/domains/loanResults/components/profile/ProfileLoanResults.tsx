@@ -8,12 +8,15 @@ import { 정렬기준Map } from '../../../createProfile/constants/enumLabelMap'
 import { Loan } from '../../type'
 import { useAtomValue } from 'jotai'
 import { sortTypeAtom } from '../../../loan/store/sort'
+import { useMount } from '../../../../hooks/useMount'
 
 interface ProfileLoanResultsProps {
   profileId: string // props 대신, profileIdAtom에서 갖다쓰도록 추후 변경
 }
 
 export const ProfileLoanResults = ({ profileId }: ProfileLoanResultsProps) => {
+  const { isMounted } = useMount()
+
   // 정렬 조건
   const sortType = useAtomValue(sortTypeAtom)
 
@@ -61,6 +64,8 @@ export const ProfileLoanResults = ({ profileId }: ProfileLoanResultsProps) => {
   const intersectionRef = useIntersection(onIntersect, {
     threshold: 1.0,
   })
+
+  if (!isMounted) return null
 
   return (
     <div className="flex-column w-full">

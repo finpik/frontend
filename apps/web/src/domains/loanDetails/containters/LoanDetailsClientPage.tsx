@@ -2,7 +2,11 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { BankImage } from '../../../components/BankImage'
-import { useGetLoanProductQuery, useGetRelatedLoanProductListQuery } from '../../../gql/graphql'
+import {
+  useGetLoanProductLazyQuery,
+  useGetLoanProductQuery,
+  useGetRelatedLoanProductListQuery,
+} from '../../../gql/graphql'
 import { LoanDetailsHeader } from '../components/LoanDetailsHeader'
 import { 대출기간단위ReverseMap } from '../constants/enumLabelMap'
 import { formatKoreanCurrency } from '../../../utils/formatKoreanCurrency'
@@ -18,6 +22,8 @@ import { LoanItem } from '../../../components/LoanItem'
 import Link from 'next/link'
 import { useAtomValue } from 'jotai'
 import { selectedProfileIdAtom } from '../../loan/store/selectedProfileId'
+import { formatInterestRate } from '../../../utils/formatInterestRate'
+import { useEffect } from 'react'
 
 export const LoanDetailsClientPage = () => {
   const selectedProfileId = useAtomValue(selectedProfileIdAtom)
@@ -27,8 +33,9 @@ export const LoanDetailsClientPage = () => {
   const { data } = useGetLoanProductQuery({
     variables: {
       loanProductId: loanProductId,
-      profileId: 1, // selectedProfileId로 변경 필요
+      profileId: selectedProfileId,
     },
+    skip: !selectedProfileId,
   })
 
   const { data: relatedData } = useGetRelatedLoanProductListQuery({
@@ -80,17 +87,21 @@ export const LoanDetailsClientPage = () => {
                   ) : (
                     <>
                       {fixedInterestRate ? (
-                        <span className="text-pm-1">{data?.getLoanProduct.minInterestRate}</span>
+                        <span className="text-pm-1">
+                          {formatInterestRate(Number(data?.getLoanProduct?.minInterestRate))}
+                        </span>
                       ) : (
                         <>
                           {data?.getLoanProduct.minInterestRate !== null && (
                             <span className="text-pm-1">
-                              {data?.getLoanProduct.minInterestRate}
+                              {formatInterestRate(Number(data?.getLoanProduct?.minInterestRate))}
                             </span>
                           )}
                           <span className="mx-[2px]">~</span>
                           {data?.getLoanProduct.maxInterestRate !== null && (
-                            <span>{data?.getLoanProduct.maxInterestRate}</span>
+                            <span>
+                              {formatInterestRate(Number(data?.getLoanProduct.maxInterestRate))}
+                            </span>
                           )}
                         </>
                       )}
@@ -161,16 +172,18 @@ export const LoanDetailsClientPage = () => {
                 </div>
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="상환 수수료">
-              <AccordionTrigger>상환 수수료</AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-[18px] text-balance">
-                <div className="flex-column gap-[8px]">
-                  <p className="b10 text-gs-4">
-                    {data?.getLoanProduct.descriptionResult.repaymentFeeGuide}
-                  </p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
+            {data?.getLoanProduct.descriptionResult.repaymentFeeGuide && (
+              <AccordionItem value="상환 수수료">
+                <AccordionTrigger>상환 수수료</AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-[18px] text-balance">
+                  <div className="flex-column gap-[8px]">
+                    <p className="b10 text-gs-4">
+                      {data?.getLoanProduct.descriptionResult.repaymentFeeGuide}
+                    </p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            )}
             <AccordionItem value="대출 신청 전 확인">
               <AccordionTrigger>대출 신청 전 확인</AccordionTrigger>
               <AccordionContent className="flex flex-col gap-[18px]">

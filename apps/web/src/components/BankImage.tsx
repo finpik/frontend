@@ -13,7 +13,7 @@ export const BankImage = ({ name, size = 'sm' }: BankImageProps) => {
   const imgUrl = BANK_NAME_LIST.includes(name) ? `/banks/${name}.svg` : '/banks/etc.svg'
 
   return (
-    <div className={`${sizeStyle} rounded-[50%] overflow-hidden`}>
+    <div className={`shrink-0 ${sizeStyle} rounded-[50%] overflow-hidden`}>
       <Image
         className="size-full object-cover"
         alt={name ?? 'etc'}

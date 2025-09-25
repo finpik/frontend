@@ -8,8 +8,11 @@ import { useDeleteProfileMutation } from '../../../gql/graphql'
 import { useMount } from '../../../hooks/useMount'
 import { useDeleteProfileForm } from '../hooks/useDeleteProfileForm'
 import { DeleteProfile } from '../types'
+import { useRouter } from 'next/navigation'
 
 export const DeleteProfileFormProvider = ({ children }: PropsWithChildren) => {
+  const router = useRouter()
+
   const form = useDeleteProfileForm()
   const { control, handleSubmit, getValues } = form
 
@@ -22,9 +25,10 @@ export const DeleteProfileFormProvider = ({ children }: PropsWithChildren) => {
         variables: {
           deletedIdList: getValues('deletedIdList'),
         },
+        refetchQueries: ['GetProfilesByUser'], // invalidate cache
       })
+      router.replace('/profile')
       console.log('프로필 삭제 성공:', res.data)
-      window.location.reload() // 삭제 후 페이지 새로고침
     } catch (e) {
       console.error('프로필 삭제 실패:', e)
     }

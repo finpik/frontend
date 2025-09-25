@@ -216,7 +216,7 @@ function CarouselDots({ length, index }: { length: number; index?: number }) {
   React.useEffect(() => {
     if (!api) return
     const onSelect = () => {
-      setSelectedIndex(api.selectedScrollSnap())
+      setSelectedIndex(length === 1 ? api.selectedScrollSnap() : api.selectedScrollSnap() % length)
     }
 
     api.on('select', onSelect)

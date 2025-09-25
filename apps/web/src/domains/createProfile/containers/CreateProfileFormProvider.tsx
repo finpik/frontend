@@ -1,7 +1,7 @@
 'use client'
 
 import { Form } from '@repo/fds/components'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, use, useEffect, useState } from 'react'
 import { DevTool } from '../../../components/DevTool'
 import { FormProvider } from 'react-hook-form'
 import {
@@ -28,6 +28,8 @@ import {
   프로필색깔Map,
 } from '../constants/enumLabelMap'
 import { format, isValid } from 'date-fns'
+import { useSetAtom } from 'jotai'
+import { createProfileLoadingAtom } from '../store/createProfile'
 
 export const CreateProfileFormProvider = ({ children }: PropsWithChildren) => {
   const form = useCreateProfileForm()
@@ -35,15 +37,24 @@ export const CreateProfileFormProvider = ({ children }: PropsWithChildren) => {
 
   const router = useRouter()
 
+  const [idemKey, setIdemKey] = useState<string | null>(null)
+
   const [CreateProfile, { data, loading, error }] = useCreateProfileMutation()
   const { isMounted } = useMount()
 
-  const submitFormHandler = async (formData: ProfileForm) => {
-    console.log('제출된 폼 데이터:', formData, getValues()) // test
+  const setLoading = useSetAtom(createProfileLoadingAtom)
+  useEffect(() => {
+    setLoading(loading)
+  }, [loading, setLoading])
 
-    // 안전하게 날짜 포맷하는 함수
-    const safeFormat = (date: any) =>
-      date instanceof Date && isValid(date) ? format(date, 'yyyy-MM-dd') : undefined
+  // 안전하게 날짜 포맷하는 함수
+  const safeFormat = (date: any) =>
+    date instanceof Date && isValid(date) ? format(date, 'yyyy-MM-dd') : undefined
+
+  const submitFormHandler = async (formData: ProfileForm) => {
+    // 이미 발급된 키가 없으면 새로 만든다
+    const currentKey = idemKey ?? crypto.randomUUID()
+    if (!idemKey) setIdemKey(currentKey)
 
     try {
       const res = await CreateProfile({
@@ -70,11 +81,19 @@ export const CreateProfileFormProvider = ({ children }: PropsWithChildren) => {
             profileColor: 프로필색깔Map[formData.profileColor as string] as ProfileColor,
           },
         },
+        context: {
+          headers: {
+            IdemKey: currentKey,
+          },
+        },
+        refetchQueries: ['GetProfilesByUser'], // invalidate cache
       })
       console.log('프로필 생성 성공:', res.data)
       router.replace('/loan/results')
     } catch (e) {
       console.error('프로필 생성 실패:', e)
+    } finally {
+      setIdemKey(null) // uuid 초기화
     }
   }
 

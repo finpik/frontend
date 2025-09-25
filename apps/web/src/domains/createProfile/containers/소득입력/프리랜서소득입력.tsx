@@ -101,19 +101,21 @@ export const 프리랜서소득입력 = ({ onNext }: 소득입력Props) => {
           />
         </div>
       </div>
-      <Button
-        type="button"
-        disabled={!watch('annualIncome') || !watch('employmentDate')}
-        onClick={() =>
-          onNext({
-            employmentForm: watch('employmentForm'),
-            annualIncome: watch('annualIncome'),
-            employmentDate: watch('employmentDate'),
-          })
-        }
-      >
-        다음
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={!watch('annualIncome') || !watch('employmentDate')}
+          onClick={() =>
+            onNext({
+              employmentForm: watch('employmentForm'),
+              annualIncome: watch('annualIncome'),
+              employmentDate: watch('employmentDate'),
+            })
+          }
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }

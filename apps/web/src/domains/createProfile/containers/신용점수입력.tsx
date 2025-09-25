@@ -57,7 +57,8 @@ export const 신용점수입력 = ({ onCreditStatus, onNext }: 신용점수입�
           <span className="c1 text-gs-7">‘NICE지키미’ 점수를 기준으로 입력해주세요.</span>
         </div>
       </div>
-      <div className="flex-column-align gap-[10px]">
+
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000] flex-column-align gap-[10px]">
         <Button
           type="button"
           variant="secondary"

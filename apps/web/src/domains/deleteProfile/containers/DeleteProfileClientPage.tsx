@@ -23,13 +23,14 @@ export const DeleteProfileClientPage = () => {
   }, [data, loading, error])
 
   const profiles = data?.getProfilesByUser as unknown as Profile[]
+  const sortedProfiles = profiles && [...profiles].sort((a, b) => a.profileSeq - b.profileSeq)
 
   return (
-    profiles && (
+    sortedProfiles && (
       <div className="flex-column w-full">
         <DeleteProfileFormProvider>
-          <DeleteProfileHeader profileIds={profiles.map((p) => p.profileId)} />
-          <Profiles profiles={profiles} />
+          <DeleteProfileHeader profileIds={sortedProfiles.map((p) => p.profileId)} />
+          <Profiles profiles={sortedProfiles} />
         </DeleteProfileFormProvider>
       </div>
     )

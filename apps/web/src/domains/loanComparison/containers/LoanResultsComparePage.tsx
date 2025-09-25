@@ -169,7 +169,7 @@ const CompactCarouselWithSync = ({
 
   return (
     <>
-      <div className="flex-column sticky top-0">
+      <div className="flex-column sticky top-0 z-[1000]">
         <div className="bg-bg-1 pt-[21px] rounded-b-lg">
           <div className="mx-[20px]">
             <CarouselContent className="-ml-[20px]">

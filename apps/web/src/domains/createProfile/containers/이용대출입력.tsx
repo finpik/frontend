@@ -77,19 +77,21 @@ export const 이용대출입력 = ({ onNext }: 이용대출입력Props) => {
           />
         </div>
       </div>
-      <Button
-        type="button"
-        disabled={!watch('loanProductUsageStatus')}
-        onClick={() =>
-          onNext({
-            loanProductUsageStatus: watch('loanProductUsageStatus'),
-            loanProductUsageCount: watch('loanProductUsageCount'),
-            totalLoanUsageAmount: watch('totalLoanUsageAmount'),
-          })
-        }
-      >
-        다음
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={!watch('loanProductUsageStatus')}
+          onClick={() =>
+            onNext({
+              loanProductUsageStatus: watch('loanProductUsageStatus'),
+              loanProductUsageCount: watch('loanProductUsageCount'),
+              totalLoanUsageAmount: watch('totalLoanUsageAmount'),
+            })
+          }
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }

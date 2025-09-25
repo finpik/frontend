@@ -78,19 +78,21 @@ export const 기타소득입력 = ({ onNext }: 소득입력Props) => {
           </div>
         </div>
       </div>
-      <Button
-        type="button"
-        disabled={watch('annualIncome') === ''}
-        onClick={() =>
-          onNext({
-            employmentForm: watch('employmentForm'),
-            annualIncome: watch('annualIncome'),
-            employmentDate: watch('employmentDate'),
-          })
-        }
-      >
-        다음
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={watch('annualIncome') === ''}
+          onClick={() =>
+            onNext({
+              employmentForm: watch('employmentForm'),
+              annualIncome: watch('annualIncome'),
+              employmentDate: watch('employmentDate'),
+            })
+          }
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }

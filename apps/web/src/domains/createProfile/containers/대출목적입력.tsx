@@ -54,13 +54,15 @@ export const 대출목적입력 = ({ onNext }: 대출목적입력Props) => {
           )}
         />
       </div>
-      <Button
-        type="button"
-        disabled={!watch('purposeOfLoan') || !!errors.purposeOfLoan}
-        onClick={() => onNext(watch('purposeOfLoan'))}
-      >
-        다음
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={!watch('purposeOfLoan') || !!errors.purposeOfLoan}
+          onClick={() => onNext(watch('purposeOfLoan'))}
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }

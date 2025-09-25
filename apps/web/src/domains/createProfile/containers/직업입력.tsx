@@ -56,13 +56,15 @@ export const 직업입력 = ({ onNext }: 직업입력Props) => {
           )}
         />
       </div>
-      <Button
-        type="button"
-        disabled={!!errors.occupation || !watch('occupation')}
-        onClick={() => onNext(watch('occupation'))}
-      >
-        다음
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={!!errors.occupation || !watch('occupation')}
+          onClick={() => onNext(watch('occupation'))}
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }

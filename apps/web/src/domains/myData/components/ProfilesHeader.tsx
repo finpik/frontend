@@ -22,7 +22,7 @@ export const ProfilesHeader = () => {
   const { control } = form
 
   return (
-    <header className="b3 text-gs-1 bg-bg-1 flex-between-align w-full px-[20px] pt-[5px] sticky top-0">
+    <header className="b3 text-gs-1 bg-bg-1 flex-between-align w-full px-[20px] pt-[5px] sticky top-0 z-[1000]">
       <button type="button" onClick={() => router.back()} className="cursor-pointer">
         <Icon name="arrow-back-ios" color="#2E2E2E" />
       </button>

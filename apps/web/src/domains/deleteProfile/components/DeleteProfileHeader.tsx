@@ -13,7 +13,7 @@ export const DeleteProfileHeader = ({ profileIds }: DeleteProfileHeaderProps) =>
   const router = useRouter()
 
   const [selectAll, setSelectAll] = useState(false)
-  const { setValue } = useFormContext()
+  const { setValue, watch } = useFormContext()
 
   const handleClickAll = () => {
     setSelectAll(!selectAll)
@@ -22,17 +22,24 @@ export const DeleteProfileHeader = ({ profileIds }: DeleteProfileHeaderProps) =>
 
   const handleClickReset = () => {
     setSelectAll(false)
-    setValue('deletedIdList', !selectAll ? profileIds : [])
+    setValue('deletedIdList', [])
   }
 
+  const disabled = watch('deletedIdList')?.length === 0
+  const textStyle = disabled ? 'text-gs-7' : 'text-pm-1'
+
   return (
-    <div className="flex-column w-full gap-[6px] bg-bg-1 sticky top-0">
+    <div className="flex-column w-full gap-[6px] bg-bg-1 sticky top-0 z-[1000]">
       <header className="b3 text-gs-1 bg-bg-1 flex-between-align w-full px-[20px] pt-[5px]">
         <button type="button" onClick={() => router.back()} className="cursor-pointer">
           <Icon name="arrow-back-ios" color="#2E2E2E" />
         </button>
         마이 데이터
-        <button type="submit" className="size-[48px] flex-center b1 text-pm-1 cursor-pointer">
+        <button
+          type="submit"
+          disabled={disabled}
+          className={`size-[48px] flex-center b1 ${textStyle} cursor-pointer`}
+        >
           삭제
         </button>
       </header>

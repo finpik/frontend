@@ -5,6 +5,7 @@ import { selectedIndexAtom } from '../store/selectedIndex'
 import { useAtom, useSetAtom } from 'jotai'
 import { selectedProfileIdAtom } from '../store/selectedProfileId'
 
+// 사용 안하는 훅
 export const useCarouselProfile = (profiles: Profile[]) => {
   const { api } = useCarousel()
   const [selectedIndex, setSelectedIndex] = useAtom(selectedIndexAtom)

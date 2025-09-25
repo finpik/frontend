@@ -27,11 +27,12 @@ export const Profiles = () => {
   }, [data, loading, error])
 
   const profiles = data?.getProfilesByUser as unknown as Profile[]
+  const sortedProfiles = profiles && [...profiles].sort((a, b) => a.profileSeq - b.profileSeq)
 
   const router = useRouter()
-  return profiles ? (
+  return sortedProfiles?.length > 0 ? (
     <div className="flex-column w-full gap-[12px] px-[20px] py-[18px]">
-      {profiles?.map((profile, index) => {
+      {sortedProfiles?.map((profile, index) => {
         const colorKey = 프로필색깔ReverseMap[profile?.profileColor]
         const bgStyle = `bg-[var(--color-${colorKey}-1)]`
         const borderStyle = `border-[var(--color-${colorKey}-2)]`

@@ -10,7 +10,7 @@ const schema = z.object({
   desiredLoanAmount: z.string(),
   loanProductUsageStatus: z.string(),
   totalLoanUsageAmount: z.string(),
-  profileName: z.string(),
+  profileName: z.string().max(14, { message: '14자 이내로만 입력 가능해요.' }),
   profileColor: z.string(),
   // 추가
   employmentForm: z.string().optional(),

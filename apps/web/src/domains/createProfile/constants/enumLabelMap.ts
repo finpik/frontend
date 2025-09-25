@@ -2,6 +2,7 @@ import {
   BusinessType,
   CreditGradeStatus,
   EmploymentForm,
+  LoanProductBadge,
   LoanProductUsageStatus,
   Occupation,
   ProfileColor,

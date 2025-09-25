@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation'
 import { 신용상태Map, 프로필색깔Map } from '../constants/enumLabelMap'
 import { getCreditInfo } from '../utils/getCreditInfo'
 import { useEffect } from 'react'
+import { useAtomValue } from 'jotai'
+import { createProfileLoadingAtom } from '../store/createProfile'
+import { useGetProfilesByUserQuery } from '../../../gql/graphql'
 
 export const 프로필카드명입력 = () => {
   const {
@@ -17,20 +20,28 @@ export const 프로필카드명입력 = () => {
   } = useFormContext()
 
   const router = useRouter()
+  const { data: profilesData } = useGetProfilesByUserQuery({})
 
   const getRandomProfileColor = () => {
     const colorKeys = Object.keys(프로필색깔Map)
 
-    const randomIndex = Math.floor(Math.random() * colorKeys.length)
+    const randomIndex =
+      profilesData?.getProfilesByUser.length === 0
+        ? 0
+        : Math.floor(Math.random() * colorKeys.length)
     const selectedKey = colorKeys[randomIndex]
     setValue('profileColor', selectedKey)
     return selectedKey
   }
-  const profileBgColor = `bg-[var(--color-${getValues('profileColor')}-1)]`
+  const bgStyle = `bg-[var(--color-${getValues('profileColor')}-1)]`
+  const borderStyle = `border-[var(--color-${getValues('profileColor')}-2)]`
 
   useEffect(() => {
-    getRandomProfileColor()
+    if (!watch('profileColor')) {
+      getRandomProfileColor()
+    }
   }, [])
+  const loading = useAtomValue(createProfileLoadingAtom)
 
   return (
     <div className="flex-column-between h-screen pb-[8px]">
@@ -40,7 +51,7 @@ export const 프로필카드명입력 = () => {
         </header>
         <h1 className="h2 text-gs-1 mb-[43px] whitespace-pre">{`거의 다 끝났어요!\n카드의 이름을 지어주세요.`}</h1>
         <div
-          className={`select-none w-full ${profileBgColor} rounded-md px-[20px] pt-[16px] pb-[14px] mb-[43px]`}
+          className={`select-none w-full ${bgStyle} rounded-md px-[20px] pt-[16px] pb-[14px] mb-[43px]`}
         >
           <ul className="flex-column gap-[6px] mt-[12px]">
             <li className="truncate flex-align b5 text-gs-2">
@@ -58,7 +69,7 @@ export const 프로필카드명입력 = () => {
               <h2 className="shrink-0 c3 text-gs-4 w-[60px]">신용 상태</h2>
               <p className="truncate">
                 {getCreditInfo(
-                  getValues('creditScore'),
+                  Number(getValues('creditScore')?.replace(/[^\d]/g, '')),
                   신용상태Map[getValues('creditGradeStatus')],
                 )}
               </p>
@@ -71,7 +82,7 @@ export const 프로필카드명입력 = () => {
               </p>
             </li>
           </ul>
-          <hr className="h-[2px] mt-[19.7px] mb-[13.3px] border-dashed border-blue-2" />
+          <hr className={`h-[2px] mt-[19.7px] mb-[13.3px] border-dashed ${borderStyle}`} />
           <div className="flex-between-align">
             <h2 className="shrink-0 b7 text-gs-4">대출 희망 금액</h2>
             <div className="h4 flex-align gap-[1px]">
@@ -105,10 +116,11 @@ export const 프로필카드명입력 = () => {
           )}
         />
       </div>
-
-      <Button type="submit" disabled={!watch('profileName') || !!errors.profileName}>
-        완성하기
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button type="submit" disabled={!watch('profileName') || !!errors.profileName || loading}>
+          완성하기
+        </Button>
+      </div>
     </div>
   )
 }

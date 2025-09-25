@@ -10,7 +10,7 @@ export const ProfilesClientPage = () => {
     <div className="flex-column w-full">
       <ProfilesHeader />
       <Tabs defaultValue="내 프로필 카드">
-        <TabsList className="sticky top-[53px]">
+        <TabsList className="sticky top-[53px] z-[1000]">
           <TabsTrigger value="내 프로필 카드">내 프로필 카드</TabsTrigger>
           <TabsTrigger value="스크랩한 상품">스크랩한 상품</TabsTrigger>
         </TabsList>

@@ -78,13 +78,15 @@ export const 신용상태입력 = ({ onNext }: 신용상태입력Props) => {
           )}
         />
       </div>
-      <Button
-        type="button"
-        disabled={!watch('creditGradeStatus') || !!errors.creditGradeStatus}
-        onClick={() => onNext(watch('purposcreditGradeStatuseOfLoan'))}
-      >
-        다음
-      </Button>
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={!watch('creditGradeStatus') || !!errors.creditGradeStatus}
+          onClick={() => onNext(watch('purposcreditGradeStatuseOfLoan'))}
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }

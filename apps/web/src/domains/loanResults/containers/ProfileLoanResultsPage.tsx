@@ -19,8 +19,9 @@ import {
 import { getCreditInfo } from '../../createProfile/utils/getCreditInfo'
 import { useRouter } from 'next/navigation'
 import { SortBottomSheet } from '../../loan/components/SortBottomSheet'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { selectedIndexAtom } from '../../loan/store/selectedIndex'
+import { selectedProfileIdAtom } from '../../loan/store/selectedProfileId'
 
 interface ProfileLoanResultsPageProps {
   profiles: Profile[]
@@ -37,7 +38,7 @@ export const ProfileLoanResultsPage = ({ profiles }: ProfileLoanResultsPageProps
   const selectedIndex = useAtomValue(selectedIndexAtom)
   const selectedProfile = sortedProfiles[selectedIndex] as Profile
 
-  const colorKey = 프로필색깔ReverseMap[selectedProfile.profileColor]
+  const colorKey = 프로필색깔ReverseMap[selectedProfile?.profileColor]
   const textStyle = `text-[var(--color-${colorKey}-3)]`
 
   const handleBackToTop = () => {
@@ -57,29 +58,20 @@ export const ProfileLoanResultsPage = ({ profiles }: ProfileLoanResultsPageProps
 
   useEffect(() => {
     if (!isCompact) return
-    let base = window.scrollY
-    let ticking = false
-    const UP_DELTA = 120
+
     const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        const y = window.scrollY
-        if (y < base - UP_DELTA) {
-          setIsCompact(false)
-          ticking = false
-          return
-        }
-        if (y > base) base = y
-        ticking = false
-      })
+      // window 스크롤이 최상단에 도달했을 때만 compact → expanded 전환
+      if (window.scrollY === 0) {
+        setIsCompact(false)
+      }
     }
+
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [isCompact])
 
   const bgStyle = isCompact ? 'bg-bg-2' : 'bg-bg-1'
-  const positionStyle = isCompact && 'sticky top-0'
+  const positionStyle = isCompact && 'sticky top-0 z-[1000]'
 
   return (
     <div className="flex-column w-full">
@@ -90,7 +82,7 @@ export const ProfileLoanResultsPage = ({ profiles }: ProfileLoanResultsPageProps
           className={`w-full flex-column ${bgStyle} ${positionStyle}`}
           opts={{ align: 'start', loop: true }}
         >
-          <ProfileCarouselProvider>
+          <ProfileCarouselProvider profiles={sortedProfiles}>
             {/* ✅ 한 개의 캐러셀만 유지하고, 내부에서 두 레이아웃을 페이드로 전환 */}
             <UnifiedCarouselView profiles={sortedProfiles} isCompact={isCompact} />
           </ProfileCarouselProvider>
@@ -123,7 +115,7 @@ export const ProfileLoanResultsPage = ({ profiles }: ProfileLoanResultsPageProps
             className="flex-align gap-[4px] px-[18px] py-[13px] rounded-xl bg-pm-1 shadow-2 fixed bottom-[42px] right-[19.6px] z-[999] cursor-pointer"
             onClick={() => router.push('/loan/comparison')}
           >
-            <span className="b7 text-bg-1">상품 비교하기</span>{' '}
+            <span className="b7 text-bg-1">상품 비교하기</span>
             <Icon name="compare" color="#ffffff" />
           </button>
         </>
@@ -135,12 +127,14 @@ export const ProfileLoanResultsPage = ({ profiles }: ProfileLoanResultsPageProps
 /** ✅ 하나의 캐러셀 + 아이템 내부에서 Expanded/Compact 두 레이어를 겹쳐서 페이드 전환 */
 function UnifiedCarouselView({ profiles, isCompact }: { profiles: Profile[]; isCompact: boolean }) {
   const selectedIndex = useAtomValue(selectedIndexAtom)
+  // ✅ 2개일 때는 강제로 배열을 복제해서 4개로 만듦
+  const displayProfiles = profiles.length === 2 ? [...profiles, ...profiles] : profiles
 
   // 상단 패딩/마진은 기존 레이아웃 그대로
-  const outerWrapClass = isCompact ? 'bg-bg-1 pt-[21px] rounded-b-lg' : 'ml-[20px] pt-[11px]'
-  const innerWrapClass = isCompact ? 'mx-[20px]' : ''
-  const contentClass = isCompact ? '-ml-[20px]' : '-ml-[8px]'
-  const itemClass = isCompact ? 'shrink-0 pl-[20px]' : 'basis-[calc(100%-28px)] shrink-0 pl-[8px]'
+  const outerWrapClass = isCompact ? 'bg-bg-1 pt-[21px] rounded-b-lg' : 'pt-[11px]'
+  const innerWrapClass = isCompact ? 'mx-[20px]' : 'ml-[20px]'
+  const contentClass = isCompact ? '-ml-[20px]' : 'ml-0 pr-[12px]'
+  const itemClass = isCompact ? 'shrink-0 pl-[20px]' : 'shrink-0 pl-0 pr-[8px]'
   const dotsClass = isCompact ? 'mt-[23px] mb-[16px]' : 'mt-[15px] mb-[21px]'
 
   return (
@@ -148,7 +142,7 @@ function UnifiedCarouselView({ profiles, isCompact }: { profiles: Profile[]; isC
       <div className={outerWrapClass}>
         <div className={innerWrapClass}>
           <CarouselContent className={contentClass}>
-            {profiles.map((p) => {
+            {displayProfiles.map((p, index) => {
               const key = p.profileId ?? p.profileSeq
               const colorKey = 프로필색깔ReverseMap[p.profileColor]
               const textStyle = `text-[var(--color-${colorKey}-3)]`
@@ -156,7 +150,7 @@ function UnifiedCarouselView({ profiles, isCompact }: { profiles: Profile[]; isC
               const borderStyle = `border-[var(--color-${colorKey}-2)]`
 
               return (
-                <CarouselItem key={key} className={itemClass}>
+                <CarouselItem key={index} className={itemClass}>
                   {/* relative 컨테이너 안에서 두 레이어를 겹침 */}
                   <div className="relative">
                     {/* Expanded 레이어 */}
@@ -346,17 +340,32 @@ function UnifiedCarouselView({ profiles, isCompact }: { profiles: Profile[]; isC
   )
 }
 
-export const ProfileCarouselProvider = ({ children }: PropsWithChildren) => {
+export const ProfileCarouselProvider = ({
+  children,
+  profiles,
+}: PropsWithChildren<{ profiles: Profile[] }>) => {
   const { api } = useCarousel()
   const [selectedIndex, setSelectedIndex] = useAtom(selectedIndexAtom)
+  const setSelectedProfileId = useSetAtom(selectedProfileIdAtom)
 
   useEffect(() => {
     if (!api) return
+
+    // ✅ selectedIndex(원본 index) → raw index로 스크롤 맞추기
+    // 복제된 슬라이드가 있다면, 가장 가까운 위치로 점프
     api.scrollTo(selectedIndex, true)
 
-    const handleSelect = () => setSelectedIndex(api.selectedScrollSnap())
+    const handleSelect = () => {
+      const rawIndex = api.selectedScrollSnap()
+      // ✅ raw index → 원본 index 매핑
+      const mappedIndex = rawIndex % profiles.length
+      setSelectedIndex(mappedIndex)
+      setSelectedProfileId(profiles[mappedIndex]?.profileId)
+    }
+
     api.on('select', handleSelect)
     handleSelect()
+
     return () => {
       api.off('select', handleSelect)
     }

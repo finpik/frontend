@@ -146,19 +146,22 @@ export const 사업자소득입력 = ({ onNext }: 소득입력Props) => {
           />
         </div>
       </div>
-      <Button
-        type="button"
-        disabled={!watch('businessType') || !watch('annualIncome') || !watch('businessStartDate')}
-        onClick={() =>
-          onNext({
-            businessType: watch('businessType'),
-            annualIncome: watch('annualIncome'),
-            businessStartDate: watch('businessStartDate'),
-          })
-        }
-      >
-        다음
-      </Button>
+
+      <div className="w-full px-[20px] fixed left-0 bottom-[8px] z-[1000]">
+        <Button
+          type="button"
+          disabled={!watch('businessType') || !watch('annualIncome') || !watch('businessStartDate')}
+          onClick={() =>
+            onNext({
+              businessType: watch('businessType'),
+              annualIncome: watch('annualIncome'),
+              businessStartDate: watch('businessStartDate'),
+            })
+          }
+        >
+          다음
+        </Button>
+      </div>
     </div>
   )
 }
