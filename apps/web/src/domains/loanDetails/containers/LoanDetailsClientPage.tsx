@@ -2,11 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { BankImage } from '../../../components/BankImage'
-import {
-  useGetLoanProductLazyQuery,
-  useGetLoanProductQuery,
-  useGetRelatedLoanProductListQuery,
-} from '../../../gql/graphql'
+import { useGetLoanProductQuery, useGetRelatedLoanProductListQuery } from '../../../gql/graphql'
 import { LoanDetailsHeader } from '../components/LoanDetailsHeader'
 import { 대출기간단위ReverseMap } from '../constants/enumLabelMap'
 import { formatKoreanCurrency } from '../../../utils/formatKoreanCurrency'
@@ -23,7 +19,7 @@ import Link from 'next/link'
 import { useAtomValue } from 'jotai'
 import { selectedProfileIdAtom } from '../../loan/store/selectedProfileId'
 import { formatInterestRate } from '../../../utils/formatInterestRate'
-import { useEffect } from 'react'
+import { LoanDetailsBadge } from '../components/LoanDetailsBadge'
 
 export const LoanDetailsClientPage = () => {
   const selectedProfileId = useAtomValue(selectedProfileIdAtom)
@@ -53,67 +49,77 @@ export const LoanDetailsClientPage = () => {
     data?.getLoanProduct && (
       <div className="flex-column w-full overflow-y-hidden">
         <LoanDetailsHeader />
-        <div className="w-full px-[20px] py-[18px] flex-column-align">
-          <div className="flex w-full gap-[17px] px-[8px] mb-[27px]">
-            <BankImage name={data?.getLoanProduct?.bankName} size="default" />
-            <div className="flex-column gap-[6px]">
-              <h1 className="h4 text-gs-1">{data?.getLoanProduct?.productName}</h1>
-              <div className="b9 text-gs-5">{data?.getLoanProduct?.bankName}</div>
+        <div className="w-full py-[18px] flex-column-align gap-x-[20px]">
+          <div className="flex-column-align w-full px-[20px]">
+            <div className="flex w-full gap-[17px] px-[8px] mb-[27px]">
+              <BankImage name={data?.getLoanProduct?.bankName} size="default" />
+              <div className="flex-column gap-[6px]">
+                <h1 className="h4 text-gs-1">{data?.getLoanProduct?.productName}</h1>
+                <div className="b9 text-gs-5">{data?.getLoanProduct?.bankName}</div>
+              </div>
             </div>
-          </div>
-          <div className="w-full">
-            <div className="flex-column gap-[17px] h4 text-gs-2">
-              <div className="flex-align gap-[21px]">
-                <div className="pl-[10px] w-[150px] flex-column gap-[6px] border-r-[1.3px] border-gs-9">
-                  <span className="b9 text-gs-6">최대 한도</span>
-                  <div>
-                    {formatKoreanCurrency(Number(data?.getLoanProduct.maxLoanLimitAmount))}원
+            <div className="w-full">
+              <div className="flex-column gap-[17px] h4 text-gs-2">
+                <div className="flex-align gap-[21px]">
+                  <div className="pl-[10px] w-[150px] flex-column gap-[6px] border-r-[1.3px] border-gs-9">
+                    <span className="b9 text-gs-6">최대 한도</span>
+                    <div>
+                      {formatKoreanCurrency(Number(data?.getLoanProduct.maxLoanLimitAmount))}원
+                    </div>
+                  </div>
+                  <div className="pl-[10px] flex-column gap-[6px]">
+                    <span className="b9 text-gs-6">대출 기간</span>
+                    <div>
+                      {Number(data?.getLoanProduct?.repaymentPeriod).toLocaleString('ko-KR')}
+                      {data?.getLoanProduct?.repaymentPeriodUnit &&
+                        대출기간단위ReverseMap[data?.getLoanProduct?.repaymentPeriodUnit]}
+                    </div>
                   </div>
                 </div>
                 <div className="pl-[10px] flex-column gap-[6px]">
-                  <span className="b9 text-gs-6">대출 기간</span>
+                  <span className="b9 text-gs-6">연 금리</span>
                   <div>
-                    {Number(data?.getLoanProduct?.repaymentPeriod).toLocaleString('ko-KR')}
-                    {data?.getLoanProduct?.repaymentPeriodUnit &&
-                      대출기간단위ReverseMap[data?.getLoanProduct?.repaymentPeriodUnit]}
+                    {noInterestRate ? (
+                      <span className="text-gs-5">심사 필요</span>
+                    ) : (
+                      <>
+                        {fixedInterestRate ? (
+                          <span className="text-pm-1">
+                            {formatInterestRate(Number(data?.getLoanProduct?.minInterestRate))}
+                          </span>
+                        ) : (
+                          <>
+                            {data?.getLoanProduct.minInterestRate !== null && (
+                              <span className="text-pm-1">
+                                {formatInterestRate(Number(data?.getLoanProduct?.minInterestRate))}
+                              </span>
+                            )}
+                            <span className="mx-[2px]">~</span>
+                            {data?.getLoanProduct.maxInterestRate !== null && (
+                              <span>
+                                {formatInterestRate(Number(data?.getLoanProduct.maxInterestRate))}
+                              </span>
+                            )}
+                          </>
+                        )}
+                        <span>%</span>
+                      </>
+                    )}
                   </div>
-                </div>
-              </div>
-              <div className="pl-[10px] flex-column gap-[6px]">
-                <span className="b9 text-gs-6">연 금리</span>
-                <div>
-                  {noInterestRate ? (
-                    <span className="text-gs-5">심사 필요</span>
-                  ) : (
-                    <>
-                      {fixedInterestRate ? (
-                        <span className="text-pm-1">
-                          {formatInterestRate(Number(data?.getLoanProduct?.minInterestRate))}
-                        </span>
-                      ) : (
-                        <>
-                          {data?.getLoanProduct.minInterestRate !== null && (
-                            <span className="text-pm-1">
-                              {formatInterestRate(Number(data?.getLoanProduct?.minInterestRate))}
-                            </span>
-                          )}
-                          <span className="mx-[2px]">~</span>
-                          {data?.getLoanProduct.maxInterestRate !== null && (
-                            <span>
-                              {formatInterestRate(Number(data?.getLoanProduct.maxInterestRate))}
-                            </span>
-                          )}
-                        </>
-                      )}
-                      <span>%</span>
-                    </>
-                  )}
                 </div>
               </div>
             </div>
           </div>
+          {data?.getLoanProduct?.loanProductBadgeList?.length && (
+            <div className="flex-align px-[20px] gap-y-[8px] no-scrollbar overflow-x-scroll">
+              {data.getLoanProduct.loanProductBadgeList?.map(
+                (badgeType, index) =>
+                  badgeType && <LoanDetailsBadge key={index} badgeType={badgeType} />,
+              )}
+            </div>
+          )}
         </div>
-        <div className="w-full h-[8px] bg-bg-2" />
+        <div className="w-full h-[8px] bg-bg-2 shrink-0" />
         <div className="flex-column px-[20px] mt-[24px] gap-[20px] mb-[36px]">
           <h2 className="s1 text-gs-2">대출 필수 조건</h2>
           <ul className="flex-column gap-[17px]">
@@ -204,7 +210,7 @@ export const LoanDetailsClientPage = () => {
             <span className="c1 text-gs-7">{`예상 금리와 한도입니다. 서류 제출 과정에서 신용 및 개인 정보가\n변동 되면 금리와 한도가 변경될 수 있습니다.`}</span>
           </div>
         </div>
-        <div className="w-full h-[8px] bg-bg-2" />
+        <div className="w-full h-[8px] bg-bg-2 shrink-0" />
         <div className="flex-column pb-[96px]">
           <h1 className="px-[20px] mt-[24px] mb-[20px] s1 text-gs-2 whitespace-pre-line">
             해당 상품을 본 유저들이 확인했어요

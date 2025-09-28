@@ -81,15 +81,3 @@ export const ProfileLoanResults = ({ profileId }: ProfileLoanResultsProps) => {
     </div>
   )
 }
-
-// Mock data for testing
-export const mockLoanProductsData = {
-  getLoanProducts: Array.from({ length: 20 }, (_, i) => ({
-    productId: `loan${(i + 1).toString().padStart(3, '0')}`,
-    productName: `${['직장인', '프리랜서', '개인사업자', '주부', '학생'][i % 5]} 맞춤 대출`,
-    interestRate: `${(3.5 + (i % 5) * 0.3).toFixed(1)}%`,
-    maxLimit: `${(500 + i * 100).toLocaleString()}원`,
-    bankName: ['신한은행', '카카오뱅크', '우리은행', '하나은행', '국민은행'][i % 5],
-    loanType: ['직장인', '프리랜서', '개인사업자', '주부', '학생'][i % 5],
-  })),
-}

@@ -9,7 +9,7 @@ export const NoProfileCard = () => {
   return (
     <div className="flex-column-align w-full bg-[#F9F9F9] rounded-md border-[1.5px] border-dashed border-[#D7D7D7]">
       <Image
-        src="/loanResults/no_profile_card.svg"
+        src="/profile/no_profile_card.svg"
         alt="no_profile_card"
         width={68}
         height={57}

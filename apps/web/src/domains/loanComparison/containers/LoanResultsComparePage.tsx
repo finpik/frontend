@@ -211,7 +211,7 @@ const CompactCarouselWithSync = ({
             <CarouselDots length={profiles.length} />
           </div>
         </div>
-        <div className="w-full h-[8px] bg-bg-2" />
+        <div className="w-full h-[8px] bg-bg-2 shrink-0" />
         <SortBottomSheet />
       </div>
       {selectedProfile && <ProfileLoanResultsForm {...selectedProfile} />}

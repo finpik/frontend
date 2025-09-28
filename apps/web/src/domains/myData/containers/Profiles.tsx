@@ -89,7 +89,7 @@ export const Profiles = () => {
   ) : (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-column-align w-full">
       <Image
-        src="/loanResults/no_profile_card.svg"
+        src="/profile/no_profile_card.svg"
         alt="no_profile_card"
         width={68}
         height={57}

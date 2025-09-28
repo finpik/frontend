@@ -8,7 +8,7 @@ export const LoanResultsHeader = () => {
   const router = useRouter()
 
   return (
-    <header className="flex-between-align w-full px-[20px] pt-[7px]">
+    <header className="flex-between-align w-full px-[20px] pt-[7px] bg-bg-1">
       <Image src="/loanResults/header_logo.svg" alt="header_logo" width={119} height={46} />
       <div className="flex-align">
         <button type="button" onClick={() => router.push('/profile')} className="cursor-pointer">

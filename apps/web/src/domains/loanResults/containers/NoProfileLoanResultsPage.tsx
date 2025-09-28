@@ -9,7 +9,7 @@ export const NoProfileLoanResultsPage = () => {
       <div className="w-full pt-[11px] pb-[18px] px-[20px]">
         <NoProfileCard />
       </div>
-      <div className="w-full h-[8px] bg-bg-2" />
+      <div className="w-full h-[8px] bg-bg-2 shrink-0" />
       <NoProfileLoanResults />
     </div>
   )
